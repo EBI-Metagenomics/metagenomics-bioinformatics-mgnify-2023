@@ -198,7 +198,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" id="toc-normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" class="nav-link active" data-scroll-target="#normalization-methods-alpha-beta-diversity-and-differentially-abundant-features">Normalization methods, alpha &amp; beta diversity, and differentially abundant features</a></li>
+  <li><a href="#open-the-jupyther-notebook" id="toc-open-the-jupyther-notebook" class="nav-link" data-scroll-target="#open-the-jupyther-notebook">Open the Jupyther Notebook</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -251,16 +258,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<hr>
-<p>Comparative metagenomics *************************</p>
-<p>Normalization methods, alpha &amp; beta diversity, and differentially abundant features ###################################################################################</p>
-<p>In this practical session, we aim to demonstrate how the MGnifyR tool can be used to fetch data and metadata of a MGnify metagenomic analyisis. Then we show diversity metrics calculus and two methods to identify differentially abundant features using taxonomic and functional profiles generated through the MGnify v5.0 pipeline for metagenomic assemblies, as shown in the workflow schema below.</p>
-<p>The dataset is the TARA ocean metagenomic study (WMS) corresponding to size fractions for prokaryotes <code>MGYS00002008. &lt;https://www.ebi.ac.uk/metagenomics/studies/MGYS00002008#overview&gt;</code>_ Find more information about the <code>TARA Ocean Project. &lt;https://fondationtaraocean.org/en/expedition/tara-oceans/&gt;</code>_</p>
+<section id="normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" class="level2">
+<h2 class="anchored" data-anchor-id="normalization-methods-alpha-beta-diversity-and-differentially-abundant-features">Normalization methods, alpha &amp; beta diversity, and differentially abundant features</h2>
+<p>In this practical session, we aim to demonstrate how the MGnifyR tool can be used to fetch data and metadata of a MGnify metagenomic analysis. Then we show diversity metrics calculus and two methods to identify differentially abundant features using taxonomic and functional profiles generated through the MGnify v5.0 pipeline for metagenomic assemblies, as shown in the workflow schema below.</p>
+<p>The dataset is the TARA ocean metagenomic study (WMS) corresponding to size fractions for prokaryotes <a href="https://www.ebi.ac.uk/metagenomics/studies/MGYS00002008#overview">MGYS00002008</a>. Find more information about the <a href="https://fondationtaraocean.org/en/expedition/tara-oceans/">TARA Ocean Project</a>.</p>
 <div class="{figure}">
 <p>image: https://www.ebi.ac.uk/metagenomics/static/5e55649e459d5f26ee6c.png alt: Alt Text width: 800px caption: Mgnify assembly analysis pipeline v5.0</p>
 </div>
-<p>MGnifyR <a href="https://rdrr.io/github/beadyallen/MGnifyR/f/doc/MGnifyR.Rmd" class="uri">https://rdrr.io/github/beadyallen/MGnifyR/f/doc/MGnifyR.Rmd</a>_ is a library that provides a set of tools for easily accessing and processing MGnify data in R, making queries to MGnify databases through the MGnify API. The benefits of MGnifyR are that data can either be fetched in tsv format or be directly combined in a phyloseq object to run an analysis in a custom workflow.</p>
-<p>The exercises are organized in 5 main sections:</p>
+<p><a href="https://rdrr.io/github/beadyallen/MGnifyR/f/doc/MGnifyR.Rmd">MGnifyR</a> is a library that provides a set of tools for easily accessing and processing MGnify data in R, making queries to MGnify databases through the MGnify API. The benefits of MGnifyR are that data can either be fetched in tsv format or be directly combined in a phyloseq object to run an analysis in a custom workflow.</p>
+<p>The exercises are organized into 5 main sections:</p>
 <ol type="1">
 <li>Fetching data and preprocessing</li>
 <li>Normalization, alpha diversity indices and taxonomic profiles visualization</li>
@@ -268,18 +274,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Detection of differentially abundant taxa (SIAMCAT)</li>
 <li>Detection of differentially abundant functions (Aldex2)</li>
 </ol>
-<section id="section" class="level43">
-<p class="heading"></p>
-<p>The practice has been prepared in a Jupyter Notebook available in the <code>MGnify Notebooks Github repo &lt;https://github.com/EBI-Metagenomics/notebooks&gt;</code>_.</p>
-<p>|action| Open a new Terminal and type the following commands:</p>
-<p>.. code-block:: bash # Run</p>
+</section>
+<section id="open-the-jupyther-notebook" class="level2">
+<h2 class="anchored" data-anchor-id="open-the-jupyther-notebook">Open the Jupyther Notebook</h2>
+<p>The practice has been prepared in a Jupyter Notebook available in the <a href="https://github.com/EBI-Metagenomics/notebooks">MGnify Notebooks Github repo</a>.</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+To access the notebook open a terminal and run the following commands:
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mgnify-notebooks</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">task</span> edit-notebooks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>|action| Find and open the ‘comparative_practice_2023’ notebook in the ‘R examples’ directory</p>
-<p>|info| The notebook has colored boxes to indicate relevant steps in the analysis or to introduce material for discussion.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Find and open the ‘comparative_practice_2023’ notebook in the ‘R examples’ directory
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The notebook has colored boxes to indicate relevant steps in the analysis or to introduce material for discussion
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Yellow boxes: * Up to you: To re-run the analysis changing parameters * Questions: For open discussion</p>
 <p>Blue boxes: * Notes: Informative boxes about the running command * Tips: Information useful for results interpretation</p>
-<p>|info| To leave the notebook, you can save the changes and close the window. Type CTRL+C to terminate the process at the terminal.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+To leave the notebook, you can save the changes and close the window in the browser. Then, terminate the process at the terminal:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CTRL+C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
 </section>
