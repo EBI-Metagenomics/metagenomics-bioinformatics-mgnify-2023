@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://course23.mgnify.org/sessions/comparative_metagenomics.html</loc>
-    <lastmod>2023-10-06T13:12:22.528Z</lastmod>
-  </url>
-  <url>
-    <loc>https://course23.mgnify.org/sessions/virify.html</loc>
-    <lastmod>2023-10-06T13:12:20.988Z</lastmod>
-  </url>
-  <url>
-    <loc>https://course23.mgnify.org/index.html</loc>
-    <lastmod>2023-10-06T13:12:19.840Z</lastmod>
+    <lastmod>2023-10-06T14:52:35.199Z</lastmod>
   </url>
   <url>
     <loc>https://course23.mgnify.org/sessions/qc.html</loc>
-    <lastmod>2023-10-06T13:12:22.060Z</lastmod>
+    <lastmod>2023-10-06T14:52:34.195Z</lastmod>
+  </url>
+  <url>
+    <loc>https://course23.mgnify.org/index.html</loc>
+    <lastmod>2023-10-06T14:52:31.987Z</lastmod>
+  </url>
+  <url>
+    <loc>https://course23.mgnify.org/sessions/virify.html</loc>
+    <lastmod>2023-10-06T14:52:33.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://course23.mgnify.org/sessions/mag_catalogues.html</loc>
+    <lastmod>2023-10-06T14:52:34.747Z</lastmod>
   </url>
 </urlset>

@@ -6,11 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Alejandra Escobar">
-<meta name="author" content="Christian Atallah">
+<meta name="author" content="Sandy Rogers">
 <meta name="dcterms.date" content="2023-10-05">
 
-<title>Metagenomics bioinformatics at MGnify (2023) - Comparative metagenomics</title>
+<title>Metagenomics bioinformatics at MGnify (2023) - MAG Catalogues</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,7 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../sessions/mag_catalogues.html" rel="next">
+<link href="../sessions/qc.html" rel="next">
+<link href="../sessions/comparative_metagenomics.html" rel="prev">
 <link href="../static/mgnify_logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/comparative_metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/comparative_metagenomics.html">Comparative metagenomics</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/comparative_metagenomics.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/mag_catalogues.html">MAG Catalogues</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -180,13 +180,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/comparative_metagenomics.html" class="sidebar-item-text sidebar-link active">
+  <a href="../sessions/comparative_metagenomics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Comparative metagenomics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/mag_catalogues.html" class="sidebar-item-text sidebar-link">
+  <a href="../sessions/mag_catalogues.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">MAG Catalogues</span></a>
   </div>
 </li>
@@ -214,8 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" id="toc-normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" class="nav-link active" data-scroll-target="#normalization-methods-alpha-beta-diversity-and-differentially-abundant-features">Normalization methods, alpha &amp; beta diversity, and differentially abundant features</a></li>
-  <li><a href="#open-the-jupyther-notebook" id="toc-open-the-jupyther-notebook" class="nav-link" data-scroll-target="#open-the-jupyther-notebook">Open the Jupyther Notebook</a></li>
+  <li><a href="#mag-catalogues-as-a-resource" id="toc-mag-catalogues-as-a-resource" class="nav-link active" data-scroll-target="#mag-catalogues-as-a-resource">MAG Catalogues as a resource</a>
+  <ul class="collapse">
+  <li><a href="#practical-1-finding-mags-by-taxonomy-on-the-mgnify-website" id="toc-practical-1-finding-mags-by-taxonomy-on-the-mgnify-website" class="nav-link" data-scroll-target="#practical-1-finding-mags-by-taxonomy-on-the-mgnify-website">Practical 1: finding MAGs by taxonomy on the MGnify website</a></li>
+  <li><a href="#practical-2-query-mgnify-catalogues-using-sourmash" id="toc-practical-2-query-mgnify-catalogues-using-sourmash" class="nav-link" data-scroll-target="#practical-2-query-mgnify-catalogues-using-sourmash">Practical 2: query MGnify catalogues using sourmash</a></li>
+  <li><a href="#practical-3-query-mgnify-catalogues-using-sourmash-programmatically" id="toc-practical-3-query-mgnify-catalogues-using-sourmash-programmatically" class="nav-link" data-scroll-target="#practical-3-query-mgnify-catalogues-using-sourmash-programmatically">Practical 3: query MGnify catalogues using sourmash, programmatically</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,26 +228,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Comparative metagenomics</h1>
+<h1 class="title">MAG Catalogues</h1>
 </div>
 
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Author</div>
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Alejandra Escobar <a href="https://orcid.org/0000-0003-3549-9115" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            <a href="www.ebi.ac.uk">
-            EMBL-EBI
-            </a>
-          </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Christian Atallah <a href="https://orcid.org/0000-0002-4853-4189" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    <p class="author">Sandy Rogers <a href="https://orcid.org/0000-0002-4283-6135" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -270,92 +264,136 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="normalization-methods-alpha-beta-diversity-and-differentially-abundant-features" class="level2">
-<h2 class="anchored" data-anchor-id="normalization-methods-alpha-beta-diversity-and-differentially-abundant-features">Normalization methods, alpha &amp; beta diversity, and differentially abundant features</h2>
-<p>In this practical session, we aim to demonstrate how the MGnifyR tool can be used to fetch data and metadata of a MGnify metagenomic analysis. Then we show diversity metrics calculus and two methods to identify differentially abundant features using taxonomic and functional profiles generated through the MGnify v5.0 pipeline for metagenomic assemblies, as shown in the workflow schema below.</p>
-<p>The dataset is the TARA ocean metagenomic study (WMS) corresponding to size fractions for prokaryotes <a href="https://www.ebi.ac.uk/metagenomics/studies/MGYS00002008#overview">MGYS00002008</a>. Find more information about the <a href="https://fondationtaraocean.org/en/expedition/tara-oceans/">TARA Ocean Project</a>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://www.ebi.ac.uk/metagenomics/static/5e55649e459d5f26ee6c.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Mgnify assembly analysis pipeline v5.0</figcaption>
-</figure>
-</div>
-<p><a href="https://rdrr.io/github/beadyallen/MGnifyR/f/doc/MGnifyR.Rmd">MGnifyR</a> is a library that provides a set of tools for easily accessing and processing MGnify data in R, making queries to MGnify databases through the MGnify API. The benefits of MGnifyR are that data can either be fetched in TSV format or be directly combined in a phyloseq object to run an analysis in a custom workflow.</p>
-<p>The exercises are organized into 5 main sections:</p>
-<ol type="1">
-<li>Fetching data and preprocessing</li>
-<li>Normalization, alpha diversity indices and taxonomic profiles visualization</li>
-<li>Comparative metagenomics at community level: Beta diversity</li>
-<li>Detection of differentially abundant taxa (SIAMCAT)</li>
-<li>Detection of differentially abundant functions (Aldex2)</li>
-</ol>
-</section>
-<section id="open-the-jupyther-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="open-the-jupyther-notebook">Open the Jupyther Notebook</h2>
-<p>The practice has been prepared in a Jupyter Notebook available in the <a href="https://github.com/EBI-Metagenomics/notebooks">MGnify Notebooks Github repo</a>.</p>
+<section id="mag-catalogues-as-a-resource" class="level1">
+<h1>MAG Catalogues as a resource</h1>
+<p>MAGs <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> are an approach to deriving genome-resolved information from metagenomic datasets.</p>
+<p><a href="https://www.ebi.ac.uk/metagenomics/browse/genomes">MGnify’s MAG Catalogues</a> are <strong>biome-specific, clustered, annotated collections</strong> of MAGs. Biomes are selected on the grounds of data availability, community interest, and project objectives.</p>
+<section id="practical-1-finding-mags-by-taxonomy-on-the-mgnify-website" class="level2">
+<h2 class="anchored" data-anchor-id="practical-1-finding-mags-by-taxonomy-on-the-mgnify-website">Practical 1: finding MAGs by taxonomy on the <a href="https://www.ebi.ac.uk/metagenomics/browse/genomes">MGnify website</a></h2>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-To access the notebook open a terminal and run the following commands:
+Search the MGnify website
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Search the <a href="https://www.ebi.ac.uk/metagenomics/browse/genomes?browse-by=search-all">All genomes list</a> for the genus <em><code>Jonquetella</code></em></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-question no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In which catalogues is that genus found?</p>
+<p>What do thise biomes have in common, and how does this align with the species found? <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</div>
+</div>
+<p>Now, we want to get a FASTA sequence for this genus.</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Find the “best” MAG
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using what we’ve learned about QC on the course, look at the detail statistics of the <em>Jonquetella</em> MAGs. Which one is best? <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Download the DNA sequence FASTA file of the “best” MAG
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will use it later.</p>
+</div>
+</div>
+</section>
+<section id="practical-2-query-mgnify-catalogues-using-sourmash" class="level2">
+<h2 class="anchored" data-anchor-id="practical-2-query-mgnify-catalogues-using-sourmash">Practical 2: query <a href="https://www.ebi.ac.uk/metagenomics/browse/genomes">MGnify catalogues</a> using sourmash</h2>
+<p><a href="https://sourmash.readthedocs.io/en/latest/">Sourmash</a> is a tool to compare DNA sequences against each other. The MGnify Genomes resource uses the sourmash library to create sketches (hashes) of every genome in every catalogues. You can query this index using your own sequences (typically MAGs you have retrieved from elsewhere or assembled yourself).</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Query the catalogues using the <em>Jonquetella</em> MAG
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the MAG sequence FASTA file you earlier retrieved. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-question no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In which catalogues is a match found for that query genome?</p>
+<p>What use cases can you think of for this kind of cross-catalogue search? <a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+</div>
+</div>
+</section>
+<section id="practical-3-query-mgnify-catalogues-using-sourmash-programmatically" class="level2">
+<h2 class="anchored" data-anchor-id="practical-3-query-mgnify-catalogues-using-sourmash-programmatically">Practical 3: query <a href="https://www.ebi.ac.uk/metagenomics/browse/genomes">MGnify catalogues</a> using sourmash, programmatically</h2>
+<p>The MGnify website is just a <strong>client</strong> of the MGnify API <a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+<p>For this part of the practical, there is a Jupyter Notebook you can follow along and try to complete the code blocks.</p>
+<p>To open it on your training VM:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/mgnify-notebooks</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">task</span> edit-notebooks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch comparative_practice_2023</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">task</span> edit-notebooks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Find and open the ‘comparative_practice_2023’ notebook in the ‘R examples’ directory
+Find and open the ‘Search MGnify Genomes (course practical 2023)’ notebook in the ‘Python examples’ directory.
 </div>
 </div>
 <div class="callout-body-container callout-body">
 
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The notebook has coloured boxes to indicate relevant steps in the analysis or to introduce material for discussion
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Yellow boxes:</strong><br>
-* Up to you: To re-run the analysis changing parameters<br>
-* Questions: For open discussion</p>
-<p><strong>Blue boxes:</strong><br>
-* Notes: Informative boxes about the running command<br>
-* Tips: Information useful for results interpretation</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-step no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-To leave the notebook, you can save the changes and close the window in the browser. Then, terminate the process at the terminal:
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CTRL+C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 
 
 </section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>Apache 2.0</div></div></section></div></main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Metagenome Assembled Genomes<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hint… what does <code>anthropi</code> in the species <em><code>J. anthropi</code></em> derive from?<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Hint… each MAG’s detail page overview tab shows stats including completeness, contamination, and N<sub>50</sub>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>If you got lost earlier, download it from <a href="https://www.ebi.ac.uk/metagenomics/api/v1/genomes/MGYG000304175/downloads/MGYG000304175.fna">MGYG000304175.fna</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>There are interesting use cases for researchers (checking which environments a species is found in, checking whether a newly assembled genome is novel etc), as well as use cases for services like MGnify (cross-linking genomes between catalogues where those datasets are not clustered together).<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Application Programming Interface<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>Apache 2.0</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -591,10 +629,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../sessions/comparative_metagenomics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Comparative metagenomics</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../sessions/mag_catalogues.html" class="pagination-link">
-        <span class="nav-page-text">MAG Catalogues</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../sessions/qc.html" class="pagination-link">
+        <span class="nav-page-text">Quality control and filtering of the raw sequence files</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
