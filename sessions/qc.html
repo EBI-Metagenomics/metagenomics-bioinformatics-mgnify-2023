@@ -213,6 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quality-control-and-filtering-of-the-raw-sequence-files" id="toc-quality-control-and-filtering-of-the-raw-sequence-files" class="nav-link" data-scroll-target="#quality-control-and-filtering-of-the-raw-sequence-files">Quality control and filtering of the raw sequence files</a></li>
   <li><a href="#assembly-phix-decontamination" id="toc-assembly-phix-decontamination" class="nav-link" data-scroll-target="#assembly-phix-decontamination">Assembly PhiX decontamination</a></li>
   <li><a href="#using-negative-controls" id="toc-using-negative-controls" class="nav-link" data-scroll-target="#using-negative-controls">Using Negative Controls</a></li>
+  <li><a href="#running-the-practical-externally" id="toc-running-the-practical-externally" class="nav-link" data-scroll-target="#running-the-practical-externally">Running the practical externally</a></li>
   </ul>
 </nav>
     </div>
@@ -839,6 +840,28 @@ Navigate to skin folder and run quality control
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>construct <span class="ex">the</span> required commands<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
+</section>
+<section id="running-the-practical-externally" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-practical-externally">Running the practical externally</h2>
+<p>We need to first fetch the practical datasets.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> http://ftp.ebi.ac.uk/pub/databases/metagenomics/mgnify_courses/ebi_2020/quality.tar.gz</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">or</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-av</span> <span class="at">--partial</span> <span class="at">--progress</span> rsync://ftp.ebi.ac.uk/pub/databases/metagenomics/mgnify_courses/ebi_2020/quality.tar.gz .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once downloaded, extract the files from the tarball:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tar</span> <span class="at">-xzvf</span> quality.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We also need the trimmomatic binary</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> quality</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.39.zip</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unzip</span> Trimmomatic-0.39.zip</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now pull the docker container and set the above quality directory as DATADIR.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">docker</span> pull microbiomeinformatics/biata-qc-assembly:v2021</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">DATADIR</span><span class="op">=</span>{path <span class="va">to</span> <span class="va">quality</span> <span class="va">directory</span>}</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xhost</span> +</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will see the message “access control disabled, clients can connect from any host”</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span>  <span class="at">-e</span> DISPLAY=<span class="va">$DISPLAY</span>  <span class="at">-v</span> <span class="va">$DATADIR</span>:/opt/data <span class="at">-v</span> /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="at">-e</span> DISPLAY=unix<span class="va">$DISPLAY</span> microbiomeinformatics/biata-qc-assembly:v2021</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The container has the following tools installed: - kneaddata - fastqc - multiqc - blast - bowtie-2</p>
+<p>You can now continue this practical from the section “Quality control and filtering of the raw sequence files”</p>
 
 
 </section>
