@@ -323,7 +323,7 @@ Note
 </section>
 <section id="short-reads-assemblies-metaspades" class="level1">
 <h1>Short-reads assemblies: metaSPAdes</h1>
-<p>For short reads, we will use SPAdes - St.&nbsp;Petersburg genome assembler (https://github.com/ablab/spades). Different pipelines are provided within this suite. For metagenomic data, we will explore metaSPAdes. metaSPAdes offers many options that fit your preferences differently, mostly depending on the type of data you are willing to assemble. To explore them, type <code>metaspades.py -h</code>. Bear in mind that options will differ when selecting different tools (e.g.&nbsp;spades.py).</p>
+<p>For short reads, we will use SPAdes - St.&nbsp;Petersburg genome assembler (https://github.com/ablab/spades), a suite of assembling tools containing different assembly pipelines. For metagenomic data, we will explore metaSPAdes. metaSPAdes offers many options that fit your preferences differently, mostly depending on the type of data you are willing to assemble. To explore them, type <code>metaspades.py -h</code>. Bear in mind that options will differ when selecting different tools (e.g.&nbsp;spades.py).</p>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -334,21 +334,38 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To run metaspades without error correction, execute the following commands:</p>
+<p>The default metaSPAdes pipeline executes an error correction step on the input fastqs. To run metaspades without the error correction step, execute the following commands:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> assembly_spades</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">metaspades.py</span> <span class="at">-t</span> 4 <span class="at">--only-assembler</span> <span class="at">-m</span> 10 <span class="at">-1</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">-2</span> reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq <span class="at">-o</span> spades_out</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-step</span> .callout-tip}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">For</span> this, take the first 40 lines of the sequence and perform a blast search</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">at</span> NCBI <span class="er">(</span><span class="ex">https://blast.ncbi.nlm.nih.gov/Blast.cgi,</span> choose</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Nucleotide:Nucleotide</span> from the set of options<span class="kw">)</span><span class="bu">.</span> Leave all other options</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">as</span> default on the search page. To select the first 40 lines of the assembly</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">perform</span> the following:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-41</span> assembly.bak/contigs.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">metaspades.py</span> <span class="at">-t</span> 4 <span class="at">--only-assembler</span> <span class="at">-m</span> 10 <span class="at">-1</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">-2</span> reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq <span class="at">-o</span> spades_out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The execution will take up to 20 minutes.</p>
+</div>
+</div>
+<p>Once the assembly has completed, you will see plenty of files, including intermediate ones, in the <code>assembly_spades</code> folder. <code>contigs.fasta</code> and <code>scaffolds.fasta</code> are the ones you are usually interested into (also for downstream analyses like binning and MAG generation). We will focus on <code>contigs.fasta</code> for this session, which is the same you are going to use in the coming practicals. Contigs are ordered from the longest assembled to the shortest. You can already try to infer the strongest taxonomic signal at this stage with a quick blastn alignment.</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take the first 100 lines of the sequence and perform a blast search at NCBI (https://blast.ncbi.nlm.nih.gov/Blast.cgi, choose Nucleotide:Nucleotide from the set of options). Leave all other options as default on the search page. To select the first 100 lines of the assembly perform the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 101 assembly.bak/contigs.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The resulting output is going to look similar to this: <img src="assembly/blast.png" class="img-fluid" alt="BlastN"></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -375,7 +392,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>Now let us consider some statistics about the entire assembly</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly_stats</span> assembly.bak/scaffolds.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly_stats</span> assembly.bak/scaffolds.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -405,7 +422,7 @@ Step
 <div class="callout-body-container callout-body">
 <p>Bandage (a Bioinformatics Application for Navigating De novo Assembly Graphs Easily), is a program that creates interactive visualisations of assembly graphs. They can be useful for finding sections of the graph, such as rRNA, or to try to find parts of a genome. Note, you can install Bandage on your local system. With Bandage, you can zoom and pan around the graph and search for sequences, plus much more. The following guide allows you to look at the assembly graph. Normally, I would recommend looking at the ‘ assembly_graph.fastg, but our assembly is quite fragmented, so we will load up the assembly_graph_after_simplification.gfa.</p>
 <p>At the terminal, type</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the Bandage GUI perform the following</p>
 <ul>
 <li>Select File -&gt; Load graph</li>
@@ -442,7 +459,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>For the long-reads assembly we will use Flye:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -482,7 +499,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>First, we need to make sure the output directories we are going to create do not already exist (MEGAHIT cannot overwrite existing directories). Run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/coassembly.bak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/coassembly.bak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>:::{.callout-step .callout-tip} Then, perform the coassemblies with MEGAHIT, as follows:</p>
