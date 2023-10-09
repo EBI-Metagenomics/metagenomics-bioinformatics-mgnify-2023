@@ -10,7 +10,7 @@
 <meta name="author" content="Tanya Gurbich">
 <meta name="dcterms.date" content="2023-10-10">
 
-<title>Metagenomics bioinformatics at MGnify (2023) - Assemblies and Co-assemblies</title>
+<title>Metagenomics bioinformatics at MGnify (2023) - Assembly and Co-assembly of Metagenomic Raw Reads</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/assemblies.html">Assemblies and Co-assemblies</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sessions/qc.html">Sessions</a></li><li class="breadcrumb-item"><a href="../sessions/assemblies.html">Assembly and Co-assembly of Metagenomic Raw Reads</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sessions/assemblies.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Assemblies and Co-assemblies</span></a>
+ <span class="menu-text">Assembly and Co-assembly of Metagenomic Raw Reads</span></a>
   </div>
 </li>
       </ul>
@@ -226,10 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assembly-and-co-assembly-of-metagenomic-raw-reads" id="toc-assembly-and-co-assembly-of-metagenomic-raw-reads" class="nav-link active" data-scroll-target="#assembly-and-co-assembly-of-metagenomic-raw-reads">Assembly and Co-assembly of Metagenomic Raw Reads</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   <li><a href="#before-we-start" id="toc-before-we-start" class="nav-link" data-scroll-target="#before-we-start">Before we start…</a></li>
   <li><a href="#short-reads-assemblies-metaspades" id="toc-short-reads-assemblies-metaspades" class="nav-link" data-scroll-target="#short-reads-assemblies-metaspades">Short-reads assemblies: metaSPAdes</a></li>
+  <li><a href="#long-reads-assemblies-flye" id="toc-long-reads-assemblies-flye" class="nav-link" data-scroll-target="#long-reads-assemblies-flye">Long-reads assemblies: Flye</a></li>
+  <li><a href="#co-assemblies-megahit" id="toc-co-assemblies-megahit" class="nav-link" data-scroll-target="#co-assemblies-megahit">Co-assemblies: MEGAHIT</a></li>
+  <li><a href="#and-now" id="toc-and-now" class="nav-link" data-scroll-target="#and-now">… And now?</a></li>
   </ul>
 </nav>
     </div>
@@ -238,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assemblies and Co-assemblies</h1>
+<h1 class="title">Assembly and Co-assembly of Metagenomic Raw Reads</h1>
 </div>
 
 
@@ -284,9 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="assembly-and-co-assembly-of-metagenomic-raw-reads" class="level2">
-<h2 class="anchored" data-anchor-id="assembly-and-co-assembly-of-metagenomic-raw-reads">Assembly and Co-assembly of Metagenomic Raw Reads</h2>
-</section>
+<hr>
 <section id="learning-objectives" class="level1">
 <h1>Learning Objectives</h1>
 <p>In the following exercises you will learn how to perform a metagenomic assembly and to start some basic analysis of the output. Subsequently, we will demonstrate the application of co-assembly. We will shortly observe assembly graphs with <code>Bandage</code>, peek into assembly statistics with <code>assembly_stats</code>, and align contig files against the BLAST database.</p>
@@ -326,7 +326,7 @@ Note
 </section>
 <section id="short-reads-assemblies-metaspades" class="level1">
 <h1>Short-reads assemblies: metaSPAdes</h1>
-<p>For short reads, we will use SPAdes - St.&nbsp;Petersburg genome assembler (https://github.com/ablab/spades), a suite of assembling tools containing different assembly pipelines. For metagenomic data, we will explore metaSPAdes. metaSPAdes offers many options that fit your preferences differently, mostly depending on the type of data you are willing to assemble. To explore them, type <code>metaspades.py -h</code>. Bear in mind that options will differ when selecting different tools (e.g.&nbsp;spades.py).</p>
+<p>For short reads, we will use SPAdes - St.&nbsp;Petersburg genome assembler (https://github.com/ablab/spades), a suite of assembling tools containing different assembly pipelines. For metagenomic data, we will explore metaSPAdes. metaSPAdes offers many options that fit your preferences differently, mostly depending on the type of data you are willing to assemble. To explore them, type <code>metaspades.py -h</code>. Bear in mind that options will differ when selecting different tools (e.g.&nbsp;spades.py) and they should be tuned according to the input dataset and desired outcome.</p>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -413,6 +413,12 @@ Question
 <p>What is the N50 of the assembly? Given that are input sequences were ~150bp long paired-end sequences, what does this tell you about the assembly?</p>
 </div>
 </div>
+<p>Another tool to keep in mind for metagenomic assemblies is QUAST, which provides a deeper insight on assemblies statistics like indels and misassemblies rate in a very short time.</p>
+</section>
+<section id="long-reads-assemblies-flye" class="level1">
+<h1>Long-reads assemblies: Flye</h1>
+<p>For long-reads, we will use Flye (https://github.com/fenderglass/Flye), which assembles single-molecule sequencing reads like PacBio and Oxford Nanopore Technologies (ONT) reads. As spades, Flye is a pipeline that takes care of assembly polishing. Similarly to assembly scaffolding, it tries to overcome long-reads base call error by comparing different reads that cover the same sequencing fragment. Flye’s parameters are quickly described in the help command (<code>flye -h</code>).</p>
+<p>Flye supports metagenomic assemblies with the <code>--meta</code> flag.</p>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -423,18 +429,58 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Bandage (a Bioinformatics Application for Navigating De novo Assembly Graphs Easily), is a program that creates interactive visualisations of assembly graphs. They can be useful for finding sections of the graph, such as rRNA, or to try to find parts of a genome. Note, you can install Bandage on your local system. With Bandage, you can zoom and pan around the graph and search for sequences, plus much more. The following guide allows you to look at the assembly graph. Normally, I would recommend looking at the ‘ assembly_graph.fastg, but our assembly is quite fragmented, so we will load up the assembly_graph_after_simplification.gfa.</p>
-<p>At the terminal, type</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that we are not using the <code>--meta</code> flag. If you have some spare time, try to execute the same command with this flag and output folder “<code>LR_meta_assembly</code>”.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each execution will take around 5 minutes.</p>
+</div>
+</div>
+<p>Let’s have a first look at how assembly graphs look like. Bandage (a Bioinformatics Application for Navigating De novo Assembly Graphs Easily) is a program that creates interactive visualisations of assembly graphs. They can be useful for finding sections of the graph, such as rRNA, or identify specific parts of a genome. Note, you can install Bandage on your local system. With Bandage, you can zoom and pan around the graph and search for sequences, and much more.</p>
+<p>Wnen looking at metaSPAdes output, it is usually recommended to launch Bandage on <code>assembly_graph.fastg</code>. However, our assembly is quite fragmented, so we will load <code>assembly_graph_after_simplification.gfa</code>.</p>
+<p>We will use Bandage to compare the two assemblies we have generated.</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the Bandage GUI perform the following</p>
 <ul>
 <li>Select File -&gt; Load graph</li>
-<li>Navigate to Home -&gt; training -&gt; Data -&gt; Assembly -&gt; files -&gt; assembly.bak and open the file assembly_graph_after_simplification.gfa</li>
+<li>Navigate to Home/training/Data/Assembly -&gt; assembly.bak and open <code>assembly_graph_after_simplification.gfa</code></li>
 </ul>
 <p>Once loaded, you need to draw the graph. To do so, under the “Graph drawing” panel on the left side perform the following:</p>
 <ul>
-<li>Set Scope to ‘Entire graph’</li>
-<li>The click on Draw graph</li>
+<li>Set Scope to <code>Entire graph</code></li>
+<li>Click on <code>Draw graph</code></li>
 </ul>
 </div>
 </div>
@@ -448,21 +494,7 @@ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Can you find any large, complex parts of the graph? If so, what do they look like.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-step no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Step
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For the long-reads assembly we will use Flye:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Can you find any large, complex parts of the metaSPAdes graph? If so, what do they look like?</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -475,9 +507,25 @@ Question
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>How do these assemblies differ to the one generated previously with metaSPAdes?</p>
+<p>How does the Flye assembly differ from the one generated with metaSPAdes?</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We launched Flye both with and without <code>--meta</code> on file <code>reads/ONT_example.fastq</code>. This file actually comes from run ERR3775163, which can be browsed on ENA (https://www.ebi.ac.uk/ena/browser/home). Have a look at sample metadata. Can you understand why, despite dealing with a metagenomic sample, the assembly graph looks better for the execution without the <code>--meta</code> option?</p>
+</div>
+</div>
+</section>
+<section id="co-assemblies-megahit" class="level1">
+<h1>Co-assemblies: MEGAHIT</h1>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -488,7 +536,7 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the following steps of this exercise, we will look at performing co-assembly of multiple datasets. Each should take about 15-20 min. In case you do not manage to finish these on time, the directory <strong>coassembly</strong> contains all the expected results.</p>
+<p>In the following steps of this exercise, we will look at performing co-assembly of multiple datasets. In case you do not manage to finish these on time, the directory <strong>coassembly</strong> contains all the expected results.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
@@ -505,9 +553,40 @@ Step
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/coassembly.bak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>:::{.callout-step .callout-tip} Then, perform the coassemblies with MEGAHIT, as follows:</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Then, perform the coassemblies with MEGAHIT, as follows:</p>
 <p>```bash megahit -1 ../reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq -2 ../reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq -o assembly1_new -t 4 –k-list 23,51,77</p>
-<p>megahit -1 ../reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_1.fastq -2 ../reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_2.fastq -o assembly2_new -</p>
+<p>megahit -1 ../reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_1.fastq -2 ../reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_2.fastq -o assembly2_new -t 4 –k-list 23,51,77</p>
+<p>megahit -1 ../reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_1.fastq,../reads/oral_human_example_1_splitac_kneaddata_paired_1.fastq -2 ../reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_2.fastq,../reads/oral_human_example_1_splitac_kneaddata_paired_2.fastq -o assembly3_new -t 4 –k-list 23,51,77</p>
+</div>
+</div>
+<p>You should now have three different assemblies generated from different subsamples of the same data.</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compare the results of contig files with <code>assembly_stats</code>. How do these assemblies differ to the one generated previously with metaSPAdes? Which one do you think is best?</p>
+</div>
+</div>
+</section>
+<section id="and-now" class="level1">
+<h1>… And now?</h1>
+<p>If you have reached the end of the practical and have some spare time, look at the paragraphs labelled “Extra”. They contain optional exercises for the curious student :)</p>
 
 
 </section>
