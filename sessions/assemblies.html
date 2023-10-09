@@ -67,8 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../sessions/virify.html" rel="next">
-<link href="../sessions/qc.html" rel="prev">
+<link href="../sessions/mag_catalogues.html" rel="prev">
 <link href="../static/mgnify_logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -187,12 +186,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sessions/assemblies.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Assemblies and Co-assemblies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../sessions/virify.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Viral detection and classification</span></a>
   </div>
@@ -215,6 +208,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">MAG Catalogues</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sessions/assemblies.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Assemblies and Co-assemblies</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -227,10 +226,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#assembling-data" id="toc-assembling-data" class="nav-link active" data-scroll-target="#assembling-data">Assembling data</a>
-  <ul class="collapse">
-  <li><a href="#assembly-and-co-assembly-of-metagenomic-raw-reads" id="toc-assembly-and-co-assembly-of-metagenomic-raw-reads" class="nav-link" data-scroll-target="#assembly-and-co-assembly-of-metagenomic-raw-reads">Assembly and Co-assembly of Metagenomic Raw Reads</a></li>
-  </ul></li>
+  <li><a href="#assembly-and-co-assembly-of-metagenomic-raw-reads" id="toc-assembly-and-co-assembly-of-metagenomic-raw-reads" class="nav-link active" data-scroll-target="#assembly-and-co-assembly-of-metagenomic-raw-reads">Assembly and Co-assembly of Metagenomic Raw Reads</a></li>
+  <li><a href="#before-we-start" id="toc-before-we-start" class="nav-link" data-scroll-target="#before-we-start">Before we start…</a></li>
+  <li><a href="#short-reads-assemblies-metaspades" id="toc-short-reads-assemblies-metaspades" class="nav-link" data-scroll-target="#short-reads-assemblies-metaspades">Short-reads assemblies: metaSPAdes</a></li>
   </ul>
 </nav>
     </div>
@@ -285,17 +283,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="assembling-data" class="level1">
-<h1>Assembling data</h1>
-<ul>
-<li>What constitutes a good assembly?</li>
-<li>How to estimate assembly quality</li>
-<li>Co-assembly</li>
-</ul>
 <section id="assembly-and-co-assembly-of-metagenomic-raw-reads" class="level2">
 <h2 class="anchored" data-anchor-id="assembly-and-co-assembly-of-metagenomic-raw-reads">Assembly and Co-assembly of Metagenomic Raw Reads</h2>
-<p>Learning Objectives - in the following exercises you will learn how to perform a metagenomic assembly and to start some basic analysis of the output. Subsequently, we will demonstrate the application of co-assembly. Note, due to the complexity of metagenomics assembly, we will only be investigating very simple example datasets as these often take days of CPU time and 100s of GB of memory. Thus, do not think that there is an issue with the assemblies.</p>
-<p>Once you have quality filtered your sequencing reads, you may want to perform <em>de novo</em> assembly in addition to, or as an alternative to a read-based analyses. The first step is to assemble your sequences into contigs. There are many tools available for this, such as MetaVelvet, metaSPAdes, IDBA-UD, MEGAHIT. We generally use metaSPAdes, as in most cases it yields the best contig size statistics (i.e.&nbsp;more continguous assembly) and has been shown to be able to capture high degrees of community diversity (Vollmers, et al.&nbsp;PLOS One 2017). However, you should consider the pros and cons of different assemblers, which not only includes the accuracy of the assembly, but also their computational overhead. Compare these factors to what you have available. For example, very diverse samples with a lot of sequence data uses a lot of memory with SPAdes. In the following practicals we will demonstrate the use of metaSPAdes on a small short-read sample, Flye on a long-read sample, and MEGAHIT to perform co-assembly.</p>
+<p>#Learning Objectives</p>
+<p>In the following exercises you will learn how to perform a metagenomic assembly and to start some basic analysis of the output. Subsequently, we will demonstrate the application of co-assembly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The process of metagenomics assembly can take hours, if not days, to complete on a normal sample, as it often requires days of CPU time and 100s of GB of memory. In this practical, we will only be investigating very simple example datasets. Thus, do not think that there is an issue with the assemblies.</p>
+</div>
+</div>
+<p>Once you have quality filtered your sequencing reads, you may want to perform <em>de novo</em> assembly in addition to, or as an alternative to read-based analyses. The first step is to assemble your sequences into contigs. There are many tools available for this, such as MetaVelvet, metaSPAdes, IDBA-UD, MEGAHIT. We generally use metaSPAdes, as in most cases it yields the best contig size statistics (i.e.&nbsp;more continguous assembly) and has been shown to be able to capture high degrees of community diversity (Vollmers, et al.&nbsp;PLOS One 2017). However, you should consider the pros and cons of different assemblers, which not only includes the accuracy of the assembly, but also their computational overhead. Compare these factors to what you have available. For example, very diverse samples with a lot of sequence data (e.g.&nbsp;samples from the soil) uses a lot of memory with SPAdes. In the following practicals we will demonstrate the use of <strong>metaSPAdes</strong> on a small short-read sample, <strong>Flye</strong> on a long-read sample, and <strong>MEGAHIT</strong> to perform co-assembly.</p>
+</section>
+<section id="before-we-start" class="level1">
+<h1>Before we start…</h1>
+<p>Let’s first change to the working directory where we will be running all the analyses:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will find all inputs needed for assemblies in the <code>reads</code> folder.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If anything goes wrong during the practical, you will find assembly backups for all steps in the respective “.bak” folders.</p>
+</div>
+</div>
+</section>
+<section id="short-reads-assemblies-metaspades" class="level1">
+<h1>Short-reads assemblies: metaSPAdes</h1>
+<p>For short reads, we will use SPAdes - St.&nbsp;Petersburg genome assembler (https://github.com/ablab/spades). Different pipelines are provided within this suite. For metagenomic data, we will explore metaSPAdes. metaSPAdes offers many options that fit your preferences differently, mostly depending on the type of data you are willing to assemble. To explore them, type <code>metaspades.py -h</code>. Bear in mind that options will differ when selecting different tools (e.g.&nbsp;spades.py).</p>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -306,9 +334,21 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Since the assembly process would take ~1h we are just going to analyse the output present in “assembly.bak”. Let’s look at the “contigs.fasta” file.</p>
-<p>For this, take the first 40 lines of the sequence and perform a blast search at NCBI (https://blast.ncbi.nlm.nih.gov/Blast.cgi, choose Nucleotide:Nucleotide from the set of options). Leave all other options as default on the search page. To select the first 40 lines of the assembly perform the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-41</span> assembly.bak/contigs.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To run metaspades without error correction, execute the following commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> assembly_spades</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">metaspades.py</span> <span class="at">-t</span> 4 <span class="at">--only-assembler</span> <span class="at">-m</span> 10 <span class="at">-1</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">-2</span> reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq <span class="at">-o</span> spades_out</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-step</span> .callout-tip}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">For</span> this, take the first 40 lines of the sequence and perform a blast search</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">at</span> NCBI <span class="er">(</span><span class="ex">https://blast.ncbi.nlm.nih.gov/Blast.cgi,</span> choose</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Nucleotide:Nucleotide</span> from the set of options<span class="kw">)</span><span class="bu">.</span> Leave all other options</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">as</span> default on the search page. To select the first 40 lines of the assembly</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">perform</span> the following:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-41</span> assembly.bak/contigs.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -335,7 +375,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>Now let us consider some statistics about the entire assembly</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly_stats</span> assembly.bak/scaffolds.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly_stats</span> assembly.bak/scaffolds.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -365,7 +405,7 @@ Step
 <div class="callout-body-container callout-body">
 <p>Bandage (a Bioinformatics Application for Navigating De novo Assembly Graphs Easily), is a program that creates interactive visualisations of assembly graphs. They can be useful for finding sections of the graph, such as rRNA, or to try to find parts of a genome. Note, you can install Bandage on your local system. With Bandage, you can zoom and pan around the graph and search for sequences, plus much more. The following guide allows you to look at the assembly graph. Normally, I would recommend looking at the ‘ assembly_graph.fastg, but our assembly is quite fragmented, so we will load up the assembly_graph_after_simplification.gfa.</p>
 <p>At the terminal, type</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Bandage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the Bandage GUI perform the following</p>
 <ul>
 <li>Select File -&gt; Load graph</li>
@@ -402,7 +442,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>For the long-reads assembly we will use Flye:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--nano-raw</span> reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq <span class="at">--out-dir</span> flye_out <span class="at">--threads</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
@@ -442,7 +482,7 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>First, we need to make sure the output directories we are going to create do not already exist (MEGAHIT cannot overwrite existing directories). Run:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/coassembly.bak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/training/Assembly/coassembly.bak</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>:::{.callout-step .callout-tip} Then, perform the coassemblies with MEGAHIT, as follows:</p>
@@ -450,7 +490,6 @@ Step
 <p>megahit -1 ../reads/oral_human_example_1_splitaa_kneaddata_paired_1.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_1.fastq -2 ../reads/oral_human_example_1_splitaa_kneaddata_paired_2.fastq,../reads/oral_human_example_1_splitab_kneaddata_paired_2.fastq -o assembly2_new -</p>
 
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div>Apache 2.0</div></div></section></div></main> <!-- /main -->
@@ -689,14 +728,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../sessions/qc.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Quality control and filtering of the raw sequence files</span>
+      <a href="../sessions/mag_catalogues.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MAG Catalogues</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../sessions/virify.html" class="pagination-link">
-        <span class="nav-page-text">Viral detection and classification</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
