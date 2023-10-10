@@ -368,7 +368,9 @@ Step
 <li><code>contigs.fasta</code>: <em>a file containing the primary metagenome assembly produced by metaSPAdes (contigs that haven’t been binned)</em></li>
 <li><code>input.fastq.sam.bam</code>: <em>a pre-generated file that contains reads mapped back to contigs</em></li>
 </ul>
-<p>To generate the <code>input.fastq.sam.bam</code> file yourself, you would run the following commands:</p>
+</div>
+</div>
+<p>If you wanted to generate the <code>input.fastq.sam.bam</code> file yourself, you would run the following commands:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: you will not be able to run subsequent steps before this workflow is completed because you need</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the input.fastq.sam.bam file to calculate contig depth in the next step</span></span>
@@ -392,8 +394,6 @@ Step
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># reformat the file with samtools:</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> view <span class="at">-Sbu</span> input.fastq.sam <span class="op">&gt;</span> junk </span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="ex">samtools</span> sort junk <span class="at">-o</span> input.fastq.sam.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 </section>
 <section id="running-metabat" class="level3">
 <h3 class="anchored" data-anchor-id="running-metabat">Running MetaBAT</h3>
