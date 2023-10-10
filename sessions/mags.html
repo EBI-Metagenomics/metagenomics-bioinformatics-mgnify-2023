@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>MAG generation</h1>
 <ul>
 <li>Generation of metagenome assembled genomes (MAGs) from assemblies</li>
-<li>Assessment of quality (MIMAGs)</li>
+<li>Assessment of quality (MIMAG)</li>
 <li>Taxonomic assignment</li>
 </ul>
 <section id="prerequisites" class="level2">
@@ -326,7 +326,7 @@ Note
 <li><a href="https://github.com/younglululu/COCACOLA">COCACOLA</a></li>
 <li><a href="https://bitbucket.org/berkeleylab/metabat">MetaBAT</a></li>
 </ul>
-<p>There is no clear winner between these tools, so the best is to experiment and compare a few different ones to determine which works best for your dataset. For this exercise, we will be using <strong>MetaBAT</strong> (specifically, MetaBAT2). The way in which MetaBAT bins contigs together is summarized in Figure 1.</p>
+<p>There is no clear winner between these tools, so it is best to experiment and compare a few different ones to determine which works best for your dataset. For this exercise, we will be using <strong>MetaBAT</strong> (specifically, MetaBAT2). The way in which MetaBAT bins contigs together is summarized in Figure 1.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -347,7 +347,7 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prior to running MetaBAT, we need to generate coverage statistics by mapping reads to the contigs. To do this, we can use <a href="http://bio-bwa.sourceforge.net/">bwa</a> and then the samtools software <a href="http://www.htslib.org/">htslib.org</a> to reformat the output. This can take some time, so we have run it in advance.</p>
+<p>Prior to running MetaBAT, we need to generate coverage statistics by mapping reads to the contigs. To do this, we can use <a href="http://bio-bwa.sourceforge.net/">bwa</a> and then <a href="http://www.htslib.org/">the samtools software</a> to reformat the output. This can take some time, so we have run it in advance.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-step no-icon callout-titled">
