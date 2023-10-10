@@ -438,7 +438,6 @@ Step
 <div class="callout-body-container callout-body">
 <p>Now let’s put together the metaBAT2 command. To see the available options, run:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here is what we are trying to do: - we want to bin the assembly file called <code>contigs.fasta</code> - the results should be saved into the <code>contigs.fasta.metabat-bins2000</code> folder - we want the bin file names to start with the prefix <code>bin</code> - the minimum contig length should be 2000</p>
 <p>Put your command together but please check the answer below before running it to make sure everything is correct.</p>
 <div class="hidden">
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">--inFile</span>  contigs.fasta <span class="at">--outFile</span> contigs.fasta.metabat-bins2000/bin <span class="at">--abdFile</span> contigs.fasta.depth.txt <span class="at">--minContig</span> 2000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
