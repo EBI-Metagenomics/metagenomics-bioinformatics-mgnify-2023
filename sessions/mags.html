@@ -426,7 +426,17 @@ Step
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jgi_summarize_bam_contig_depths</span> <span class="at">--outputDepth</span> contigs.fasta.depth.txt input.fastq.sam.bam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p>:::{.callout-step .callout-tip} Now let’s put together the metaBAT2 command. To see the available options, run:</p>
+<div class="callout callout-style-default callout-step no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now let’s put together the metaBAT2 command. To see the available options, run:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here is what we are trying to do:</p>
 <ul>
@@ -436,42 +446,27 @@ Step
 <li><p>the minimum contig length should be 2000</p></li>
 </ul>
 <p>Put your command together but please check the answer below before running it to make sure everything is correct.</p>
-<div class="hidden">
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">--inFile</span>  contigs.fasta <span class="at">--outFile</span> contigs.fasta.metabat-bins2000/bin <span class="at">--abdFile</span> contigs.fasta.depth.txt <span class="at">--minContig</span> 2000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">--inFile</span> contigs.fasta <span class="at">--outFile</span> contigs.fasta.metabat-bins2000/bin <span class="at">--abdFile</span> contigs.fasta.depth.txt <span class="at">--minContig</span> 2000</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-note}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">We</span> set the minimum contig size to 2000 using the <span class="kw">`</span><span class="ex">--minContig</span><span class="kw">`</span> parameter.</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-note}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Once</span> the binning process is complete, each bin will be</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">grouped</span> into a multi-fasta file with a name structure of</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">**bin.[0-9].fa**.</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-step</span> .callout-tip}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Inspect</span> the output of the binning process.</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> contigs.fasta.metabat-bins2000/bin<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-@[html]{
-<style>
-  .collapse-content {
-    display: none;
-  }
-
-  .show-content:checked + .collapse-content {
-    display: block;
-  }
-</style>
-<p>}</p>
-<p><a href="#">Toggle Code</a> <input type="checkbox" class="show-content" id="toggle-code"></p>
-<div class="collapse-content">
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">metabat2</span> <span class="at">--inFile</span> contigs.fasta <span class="at">--outFile</span> contigs.fasta.metabat-bins2000/bin <span class="at">--abdFile</span> contigs.fasta.depth.txt <span class="at">--minContig</span> 2000</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-note}</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">We</span> set the minimum contig size to 2000 using the <span class="kw">`</span><span class="ex">--minContig</span><span class="kw">`</span> parameter.</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-note}</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Once</span> the binning process is complete, each bin will be</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="ex">grouped</span> into a multi-fasta file with a name structure of</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">**bin.[0-9].fa**.</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="ex">:::</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ex">:::{.callout-step</span> .callout-tip}</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ex">Inspect</span> the output of the binning process.</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> contigs.fasta.metabat-bins2000/bin<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>:::</p>
+</div>
 <div class="callout callout-style-default callout-question no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -499,7 +494,7 @@ Question
 </div>
 </div>
 <p>Obviously, not all bins will have the same level of accuracy since some might represent a very small fraction of a potential species present in your dataset. To further assess the quality of the bins, we will use <a href="https://github.com/Ecogenomics/CheckM/wiki"><strong>CheckM</strong></a>.</p>
-</div></section>
+</section>
 <section id="running-checkm" class="level3">
 <h3 class="anchored" data-anchor-id="running-checkm">Running CheckM</h3>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -526,10 +521,10 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>Before we start, we need to configure CheckM.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> /opt/data/checkm_data</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> checkm_data_2015_01_16.tar.gz <span class="at">-C</span> /opt/data/checkm_data</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot /opt/data/checkm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> /opt/data/checkm_data</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> checkm_data_2015_01_16.tar.gz <span class="at">-C</span> /opt/data/checkm_data</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> data setRoot /opt/data/checkm_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>This program has some handy tools not only for quality control but also for taxonomic classification, assessing coverage, building a phylogenetic tree, etc. The most relevant ones for this exercise are wrapped into the <strong>lineage_wf</strong> workflow.</p>
@@ -544,13 +539,13 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>Now run CheckM with the following command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/assemblies</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-x</span> fa contigs.fasta.metabat-bins2000 checkm_output <span class="at">--tab_table</span> <span class="at">-f</span> MAGs_checkm.tab <span class="at">--reduced_tree</span> <span class="at">-t</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/assemblies</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-x</span> fa contigs.fasta.metabat-bins2000 checkm_output <span class="at">--tab_table</span> <span class="at">-f</span> MAGs_checkm.tab <span class="at">--reduced_tree</span> <span class="at">-t</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Due to memory constraints (&lt; 40 GB), we have added the option <code>--reduced_tree</code> to build the phylogeny with a reduced number of reference genomes.</p>
 <p>Once the <strong>lineage_wf</strong> analysis is done, the reference tree can be found in <strong>checkm_output/storage/tree/concatenated.tre</strong>.</p>
 <p>Additionally, you will have the taxonomic assignment and quality assessment of each bin in the file <strong>MAGs_checkm.tab</strong> with the corresponding level of <strong>completeness</strong>, <strong>contamination</strong>, and <strong>strain heterogeneity</strong> (Fig. 2). A quick way to infer the overall quality of the bin is to calculate the level of **(completeness - 5*contamination)<strong>. You should be aiming for an overall score of at least </strong>70-80%**.</p>
 <p>You can inspect the CheckM output with:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> MAGs_checkm.tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> MAGs_checkm.tab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -571,8 +566,8 @@ Step
 </div>
 <div class="callout-body-container callout-body">
 <p>To do this, run the following command:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nw_rename</span> assemblies/checkm_output/storage/tree/concatenated.tre assemblies/rename_list.tab <span class="op">&gt;</span> renamed.tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nw_rename</span> assemblies/checkm_output/storage/tree/concatenated.tre assemblies/rename_list.tab <span class="op">&gt;</span> renamed.tree</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
