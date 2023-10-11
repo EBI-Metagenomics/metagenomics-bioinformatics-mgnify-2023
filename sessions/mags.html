@@ -565,9 +565,10 @@ Step
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Now run CheckM with the following command:</p>
+<p>STOP!!!! The following command fails. Please use backups instead, inspect the command visually only:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/assemblies</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-x</span> fa contigs.fasta.metabat-bins2000 checkm_output <span class="at">--tab_table</span> <span class="at">-f</span> MAGs_checkm.tab <span class="at">--reduced_tree</span> <span class="at">-t</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INSPECT BUT DO NOT RUN!</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">checkm</span> lineage_wf <span class="at">-x</span> fa contigs.fasta.metabat-bins2000 checkm_output <span class="at">--tab_table</span> <span class="at">-f</span> MAGs_checkm.tab <span class="at">--reduced_tree</span> <span class="at">-t</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Due to memory constraints (&lt; 40 GB), we have added the option <code>--reduced_tree</code> to build the phylogeny with a reduced number of reference genomes.</p>
 <p>Once the <strong>lineage_wf</strong> analysis is done, the reference tree can be found in <strong>checkm_output/storage/tree/concatenated.tre</strong>.</p>
 <p>Additionally, you will have the taxonomic assignment and quality assessment of each bin in the file <strong>MAGs_checkm.tab</strong> with the corresponding level of <strong>completeness</strong>, <strong>contamination</strong>, and <strong>strain heterogeneity</strong> (Fig. 2). A quick way to infer the overall quality of the bin is to calculate the level of **(completeness - 5*contamination)<strong>. You should be aiming for an overall score of at least </strong>70-80%**.</p>
