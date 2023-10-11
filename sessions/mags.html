@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>MAG generation</h1>
 <ul>
 <li>Generation of metagenome assembled genomes (MAGs) from assemblies</li>
-<li>Assessment of quality (MIMAG)</li>
+<li>Assessment of quality</li>
 <li>Taxonomic assignment</li>
 </ul>
 <section id="prerequisites" class="level2">
@@ -382,13 +382,13 @@ Tip
 <div class="callout-body-container callout-body">
 <p>If you wanted to generate the <code>input.fastq.sam.bam</code> file yourself, you would run the following commands:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: you will not be able to run subsequent steps before this workflow is completed because you need</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the input.fastq.sam.bam file to calculate contig depth in the next step</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: you will not be able to run subsequent steps until this workflow is completed because you need</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the input.fastq.sam.bam file to calculate contig depth in the next step.</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/assemblies/</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># if you would like to practice this now, back up the input.fastq.sam.bam file that we provided first, </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># as these steps will take a while:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># If you would like to practice this now, back up the input.fastq.sam.bam file that we provided first,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># as these steps will take a while:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /opt/data/assemblies/</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> input.fastq.sam.bam input.fastq.sam.bam.bak</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># index the contigs file that was produced by metaSPAdes:</span></span>
